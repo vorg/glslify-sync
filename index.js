@@ -4,7 +4,7 @@ var path = require('path');
 
 function glslifySync(filePath) {
     var glslifyBinPath = moduleBin('glslify');
-    var glslifyBinAbsolutePath = path.resolve('/', glslifyBin);
+    var glslifyBinAbsolutePath = path.resolve('/', glslifyBinPath);
     return execSync(glslifyBinAbsolutePath + ' ' + filePath, { encoding: 'utf8' });
 }
 
