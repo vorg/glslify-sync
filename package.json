@@ -1,6 +1,6 @@
 {
   "name": "glslify-sync",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A synchronous wrapper for glslify, providing a consistent interface between both Node.js and browserify",
   "main": "index.js",
   "license": "MIT",
