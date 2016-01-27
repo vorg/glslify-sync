@@ -10,7 +10,8 @@
     "url": "https://github.com/vorg"
   },
   "dependencies": {
-    "glslify": "^5.0.2"
+    "glslify": "^5.0.2",
+    "module-bin": "0.0.1"
   },
   "devDependencies": {},
   "scripts": {

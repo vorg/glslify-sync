@@ -1,7 +1,11 @@
 var execSync = require('child_process').execSync;
+var moduleBin = require('module-bin');
+var path = require('path');
 
-function glslifySync(path) {
-    return execSync(__dirname + '/node_modules/.bin/glslify ' + path, { encoding: 'utf8' });
+function glslifySync(filePath) {
+    var glslifyBinPath = moduleBin('glslify');
+    var glslifyBinAbsolutePath = path.resolve('/', glslifyBin);
+    return execSync(glslifyBinAbsolutePath + ' ' + filePath, { encoding: 'utf8' });
 }
 
 module.exports = glslifySync;
