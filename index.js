@@ -12,8 +12,6 @@ function glslifySync(filePath) {
 
     filePath = path.resolve(path.dirname(caller), filePath)
 
-    console.log(filePath);
-
     return execSync(glslifyBinAbsolutePath + ' ' + filePath, { encoding: 'utf8' });
 }
 
