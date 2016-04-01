@@ -3,22 +3,34 @@
   "version": "1.1.1",
   "description": "A synchronous wrapper for glslify, providing a consistent interface between both Node.js and browserify",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "license": "MIT",
   "author": {
     "name": "Marcin Ignac",
     "email": "marcin.ignac@gmail.com",
     "url": "https://github.com/vorg"
   },
+  "contributors": [
+    "Dmitry Ivanov <dfcreative@gmail.com>"
+  ],
   "dependencies": {
+    "callsite": "^1.0.0",
     "glslify": "^5.0.2",
     "module-bin": "0.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cln": "^1.0.0"
+  },
   "scripts": {
-    "test": "node test.js"
+    "test": "node test/index.js"
   },
   "keywords": [
-    "browserify,glsl,webgl"
+    "browserify",
+    "glsl",
+    "webgl",
+    "glslify"
   ],
   "repository": {
     "type": "git",
