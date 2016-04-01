@@ -16,7 +16,7 @@ For example
 
 ```javascript
 var glslify = require('glslify-sync')
-var source = glslify(__dirname + '/shader.glsl')
+var source = glslify('./shader.glsl')
 
 console.log(source) // your glslified GLSL source!
 ```
