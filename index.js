@@ -7,10 +7,9 @@ function glslifySync(filePath) {
     var glslifyBinPath = moduleBin('glslify');
     var glslifyBinAbsolutePath = path.resolve('/', glslifyBinPath);
 
-    var stack = callsite();
-    var caller = stack[1].getFileName();
-
     if (!path.isAbsolute(filePath)) {
+	    var stack = callsite();
+	    var caller = stack[1].getFileName();
 	    filePath = path.resolve(path.dirname(caller), filePath)
     }
 
