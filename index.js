@@ -10,7 +10,9 @@ function glslifySync(filePath) {
     var stack = callsite();
     var caller = stack[1].getFileName();
 
-    filePath = path.resolve(path.dirname(caller), filePath)
+    if (!path.isAbsolute(filePath)) {
+	    filePath = path.resolve(path.dirname(caller), filePath)
+    }
 
     return execSync(glslifyBinAbsolutePath + ' ' + filePath, { encoding: 'utf8' });
 }
