@@ -1,11 +1,40 @@
-var path = require('path');
 var callsite = require('callsite');
-var bundle = require('glslify-bundle');
-var deps = require('glslify-deps');
 var path = require('path');
-var deasync = require('deasync');
 
-function glslifySync (filePath) {
+var glslifySync;
+
+//try using deasync, if available
+try {
+	var deasync = require('deasync');
+	var bundle = require('glslify-bundle');
+	var deps = require('glslify-deps');
+
+	glslifySync = function (filePath) {
+		var runSync = deasync(function (filePath, cb) {
+			deps().add(filePath, cb);
+		});
+
+		var tree = runSync(filePath);
+		var glsl = bundle(tree);
+
+		return glsl;
+	}
+}
+
+//execSync fallback
+catch (e) {
+	var execSync = require('child_process').execSync;
+	var moduleBin = require('module-bin');
+
+	glslifySync = function (filePath) {
+		var glslifyBinPath = moduleBin('glslify');
+		var glslifyBinAbsolutePath = path.resolve('/', glslifyBinPath);
+		return execSync(glslifyBinAbsolutePath + ' ' + filePath, { encoding: 'utf8' });
+	}
+}
+
+
+function glslify (filePath) {
 	if (!filePath) return '';
 
 	if (!path.isAbsolute(filePath)) {
@@ -14,14 +43,8 @@ function glslifySync (filePath) {
 		filePath = path.resolve(path.dirname(caller), filePath)
 	}
 
-	var runSync = deasync(function (filePath, cb) {
-		deps().add(filePath, cb);
-	});
-
-	var tree = runSync(filePath);
-	var glsl = bundle(tree);
-
-	return glsl;
+	return glslifySync(filePath);
 }
 
-module.exports = glslifySync;
+
+module.exports = glslify;
