@@ -1,19 +1,27 @@
-var execSync = require('child_process').execSync;
-var moduleBin = require('module-bin');
 var path = require('path');
 var callsite = require('callsite');
+var bundle = require('glslify-bundle');
+var deps = require('glslify-deps');
+var path = require('path');
+var deasync = require('deasync');
 
-function glslifySync(filePath) {
-    var glslifyBinPath = moduleBin('glslify');
-    var glslifyBinAbsolutePath = path.resolve('/', glslifyBinPath);
+function glslifySync (filePath) {
+	if (!filePath) return '';
 
-    if (!path.isAbsolute(filePath)) {
-	    var stack = callsite();
-	    var caller = stack[1].getFileName();
-	    filePath = path.resolve(path.dirname(caller), filePath)
-    }
+	if (!path.isAbsolute(filePath)) {
+		var stack = callsite();
+		var caller = stack[1].getFileName();
+		filePath = path.resolve(path.dirname(caller), filePath)
+	}
 
-    return execSync(glslifyBinAbsolutePath + ' ' + filePath, { encoding: 'utf8' });
+	var runSync = deasync(function (filePath, cb) {
+		deps().add(filePath, cb);
+	});
+
+	var tree = runSync(filePath);
+	var glsl = bundle(tree);
+
+	return glsl;
 }
 
 module.exports = glslifySync;

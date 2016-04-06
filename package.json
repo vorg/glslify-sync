@@ -4,7 +4,8 @@
   "description": "A synchronous wrapper for glslify, providing a consistent interface between both Node.js and browserify",
   "main": "index.js",
   "files": [
-    "index.js", "transform.js"
+    "index.js",
+    "transform.js"
   ],
   "license": "MIT",
   "author": {
@@ -17,8 +18,10 @@
   ],
   "dependencies": {
     "callsite": "^1.0.0",
+    "deasync": "^0.1.4",
     "glslify": "^5.0.2",
-    "module-bin": "0.0.1"
+    "glslify-bundle": "^5.0.0",
+    "glslify-deps": "^1.2.5"
   },
   "devDependencies": {
     "cln": "^1.0.0"
