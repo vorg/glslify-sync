@@ -19,7 +19,12 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "glslify": "^5.0.2",
+    "glslify-bundle": "^5.0.0",
+    "glslify-deps": "^1.2.5",
     "module-bin": "0.0.1"
+  },
+  "optionalDependencies": {
+    "deasync": "^0.1.4"
   },
   "devDependencies": {
     "cln": "^1.0.0"
