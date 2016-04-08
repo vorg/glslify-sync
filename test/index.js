@@ -7,7 +7,10 @@ var clean = require('cln');
 var fixture = fs.readFileSync(path.resolve(__dirname, './shader.glsl'), 'utf-8');
 
 
-var result = glslify('./shader.glsl');
-result = result.replace(/#[^\n]*/, '');
+setTimeout(function () {
+	var result = glslify('./shader.glsl');
 
-assert.equal(clean(result), clean(fixture));
+	result = result.replace(/#[^\n]*/, '');
+
+	assert.equal(clean(result), clean(fixture));
+});
